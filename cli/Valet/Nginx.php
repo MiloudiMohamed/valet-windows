@@ -114,9 +114,18 @@ class Nginx
      */
     public function rewriteSecureNginxFiles()
     {
+        
         $tld = $this->configuration->read()['tld'];
 
         $this->site->resecureForNewTld($tld, $tld);
+    }
+    
+    public function rewriteSecureNginxFiles()
+    {
+        if (is_array($config = $this->configuration->read())) {
+            $tld = $config['tld'];
+            $this->site->resecureForNewTld($tld, $tld);
+        }
     }
 
     /**
